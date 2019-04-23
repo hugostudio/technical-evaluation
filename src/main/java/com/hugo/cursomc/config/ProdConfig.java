@@ -13,8 +13,8 @@ import com.hugo.cursomc.services.EmailService;
 import com.hugo.cursomc.services.MockEmailService;
 
 @Configuration	
-@Profile("prod")
-public class DevConfig {
+@Profile("dev")
+public class ProdConfig {
 	
 	@Autowired
 	private DBService dbService;
