@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.hugo.cursomc.services.DBService;
 import com.hugo.cursomc.services.EmailService;
-import com.hugo.cursomc.services.MockEmailService;
+import com.hugo.cursomc.services.SmtpEmailService;
 
 @Configuration	
 @Profile("prod")
@@ -36,7 +36,7 @@ public class ProdConfig {
 	
 	@Bean
 	public EmailService emailService() {
-		return new MockEmailService();
+		return new SmtpEmailService();
 	}
 
 }
