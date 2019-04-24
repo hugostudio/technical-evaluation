@@ -3,6 +3,9 @@ package com.hugo.cursomc.services;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,8 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired private ClienteService clienteService;
+	
 	@Autowired
 	private EmailService emailService;
 	
@@ -51,6 +56,7 @@ public class PedidoService {
 		return obj;
 	}
 	
+	@Transactional
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
@@ -69,7 +75,9 @@ public class PedidoService {
 			ip.setPreco(produtoService.buscar(ip.getProduto().getId()).getPreco());
 			ip.setPedido(obj);
 		}
-		itemPedidoRepository.saveAll(obj.getItens());
+		List<ItemPedido> lstItemPedido = itemPedidoRepository.saveAll(obj.getItens());
+		obj.setItens(lstItemPedido.stream().collect(Collectors.toSet()));
+		obj.setCliente(clienteService.buscar(obj.getCliente().getId()));
 		emailService.sendOrderConfirmationMail(obj);
 		return obj;
 	}

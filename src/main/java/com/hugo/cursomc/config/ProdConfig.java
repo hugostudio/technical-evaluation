@@ -13,7 +13,7 @@ import com.hugo.cursomc.services.EmailService;
 import com.hugo.cursomc.services.MockEmailService;
 
 @Configuration	
-@Profile("dev")
+@Profile("prod")
 public class ProdConfig {
 	
 	@Autowired
