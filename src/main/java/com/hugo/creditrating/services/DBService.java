@@ -1,0 +1,53 @@
+package com.hugo.creditrating.services;
+
+import java.text.ParseException;
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hugo.creditrating.domain.Categoria;
+import com.hugo.creditrating.domain.Cliente;
+import com.hugo.creditrating.domain.Estado;
+import com.hugo.creditrating.domain.enums.TipoSexo;
+import com.hugo.creditrating.repositories.CategoriaRepository;
+import com.hugo.creditrating.repositories.ClienteRepository;
+import com.hugo.creditrating.repositories.EstadoRepository;
+
+@Service
+public class DBService {
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+	
+	@Autowired private EstadoRepository estadoRepository;	
+	@Autowired private ClienteRepository clienteRepository;	
+
+	
+	public DBService() {
+	}
+	
+	public void instantiateDatabase() throws ParseException {
+		Categoria cat1 = new Categoria(null, "Informática");
+		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+		Categoria cat4 = new Categoria(null, "Bricolagem");
+		Categoria cat5 = new Categoria(null, "Farmacia");
+		Categoria cat6 = new Categoria(null, "Infantil");
+		Categoria cat7 = new Categoria(null, "Ferramentas");
+		Categoria cat8 = new Categoria(null, "Decoração");
+		Categoria cat9 = new Categoria(null, "Jardinagem");
+		Categoria cat10 = new Categoria(null, "Perfumaria");			
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10));
+		
+		Estado est1 = new Estado("MG", "Minas Gerais");
+		Estado est2 = new Estado("SP", "São Paulo");
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", 30, TipoSexo.FEMININO, "S", "SP", 0, 3700d);
+		Cliente cli2 = new Cliente(null, "Hugo Leonardo", 43, TipoSexo.MASCULINO, "D", "RJ", 1, 6900d);		
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));		
+		
+	}
+
+}
