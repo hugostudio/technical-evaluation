@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.hugo.creditrating.domain.Cliente;
+import com.hugo.creditrating.domain.enums.EstadoCivil;
+import com.hugo.creditrating.domain.enums.TipoSexo;
 import com.hugo.creditrating.dto.ClienteDTO;
 import com.hugo.creditrating.dto.ClienteNewDTO;
 import com.hugo.creditrating.repositories.ClienteRepository;
@@ -57,7 +59,7 @@ public class ClienteService {
 		try {
 			clienteRepo.deleteById(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível exclui um Cliente que possui Pedidos !");
+			throw new DataIntegrityException("Não é possível exclui um Cliente que possui referências !");
 		}		
 	}
 	
@@ -67,11 +69,13 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDTO) {
-		return new Cliente(objDTO.getId(), objDTO.getNome(), null, null, null, null, null, null);
+		return new Cliente(objDTO.getId(), objDTO.getNome(), null, null, null, null, null, null, null);
 	}	
 	
 	public Cliente fromDTO(ClienteNewDTO objDTO) {	
-		Cliente cli = new Cliente(null, objDTO.getNome(), null, null, null, null, null, null);
+		Cliente cli = new Cliente(null, objDTO.getNome(), objDTO.getCpf(), objDTO.getIdade(), 
+							TipoSexo.toEnum(objDTO.getSexo()), EstadoCivil.toEnum(objDTO.getEstadoCivil()), 
+							objDTO.getEstado(), objDTO.getQtdDependentes(), objDTO.getVlRenda());
 		return cli;
 	}
 	
