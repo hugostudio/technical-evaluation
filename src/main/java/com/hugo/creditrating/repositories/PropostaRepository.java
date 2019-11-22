@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hugo.creditrating.domain.Cliente;
+import com.hugo.creditrating.domain.Proposta;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+public interface PropostaRepository extends JpaRepository<Proposta, Integer> {
 	@Transactional(readOnly=true)
-	Cliente findByCpf(String cpf);
+	Proposta findByCpf(String cpf);
 }

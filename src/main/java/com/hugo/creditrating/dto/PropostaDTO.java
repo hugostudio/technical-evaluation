@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.hugo.creditrating.domain.Cliente;
+import com.hugo.creditrating.domain.Proposta;
 
-public class ClienteDTO implements Serializable {
+public class PropostaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
@@ -22,10 +22,10 @@ public class ClienteDTO implements Serializable {
 	@Email(message="cpf inválido")
 	private String cpf;
 	
-	public ClienteDTO() {
+	public PropostaDTO() {
 	}
 
-	public ClienteDTO(Cliente obj) {
+	public PropostaDTO(Proposta obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.cpf = "";

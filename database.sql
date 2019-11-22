@@ -24,7 +24,7 @@ CREATE INDEX FKkworrwk40xj58kevvh3evi500 ON cidade (estado_id);
 INSERT INTO cidade (id, nome, estado_id) VALUES (1, 'Uberlândia', 1);
 INSERT INTO cidade (id, nome, estado_id) VALUES (2, 'São Paulo', 2);
 INSERT INTO cidade (id, nome, estado_id) VALUES (3, 'Campinas', 2);
-CREATE TABLE cliente
+CREATE TABLE Proposta
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     cpf_ou_cnpj varchar(255),
@@ -32,7 +32,7 @@ CREATE TABLE cliente
     nome varchar(255),
     tipo int(11)
 );
-INSERT INTO cliente (id, cpf_ou_cnpj, email, nome, tipo) VALUES (1, '36378912377', 'maria@gmail.com', 'Maria Silva', 1);
+INSERT INTO Proposta (id, cpf_ou_cnpj, email, nome, tipo) VALUES (1, '36378912377', 'maria@gmail.com', 'Maria Silva', 1);
 CREATE TABLE endereco
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -42,12 +42,12 @@ CREATE TABLE endereco
     logradouro varchar(255),
     numero varchar(255),
     cidade_id int(11),
-    cliente_id int(11)
+    Proposta_id int(11)
 );
 CREATE INDEX FK8b1kcb3wucapb8dejshyn5fsx ON endereco (cidade_id);
-CREATE INDEX FK8s7ivtl4foyhrfam9xqom73n9 ON endereco (cliente_id);
-INSERT INTO endereco (id, bairro, cep, complemento, logradouro, numero, cidade_id, cliente_id) VALUES (1, 'Jardins', '38220834', 'Apto 30', 'Rua Flores', '300', 1, 1);
-INSERT INTO endereco (id, bairro, cep, complemento, logradouro, numero, cidade_id, cliente_id) VALUES (2, 'Centro', '38777012', 'Sala 800', 'Avenida Matos', '105', 2, 1);
+CREATE INDEX FK8s7ivtl4foyhrfam9xqom73n9 ON endereco (Proposta_id);
+INSERT INTO endereco (id, bairro, cep, complemento, logradouro, numero, cidade_id, Proposta_id) VALUES (1, 'Jardins', '38220834', 'Apto 30', 'Rua Flores', '300', 1, 1);
+INSERT INTO endereco (id, bairro, cep, complemento, logradouro, numero, cidade_id, Proposta_id) VALUES (2, 'Centro', '38777012', 'Sala 800', 'Avenida Matos', '105', 2, 1);
 CREATE TABLE estado
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -92,13 +92,13 @@ CREATE TABLE pedido
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     instante datetime,
-    cliente_id int(11),
+    Proposta_id int(11),
     endereco_de_entrega_id int(11)
 );
-CREATE INDEX FK30s8j2ktpay6of18lbyqn3632 ON pedido (cliente_id);
+CREATE INDEX FK30s8j2ktpay6of18lbyqn3632 ON pedido (Proposta_id);
 CREATE INDEX FK1fihyy2fnocpuwc74674qmfkv ON pedido (endereco_de_entrega_id);
-INSERT INTO pedido (id, instante, cliente_id, endereco_de_entrega_id) VALUES (1, '2017-09-30 10:32:00', 1, 1);
-INSERT INTO pedido (id, instante, cliente_id, endereco_de_entrega_id) VALUES (2, '2017-10-14 13:35:00', 1, 2);
+INSERT INTO pedido (id, instante, Proposta_id, endereco_de_entrega_id) VALUES (1, '2017-09-30 10:32:00', 1, 1);
+INSERT INTO pedido (id, instante, Proposta_id, endereco_de_entrega_id) VALUES (2, '2017-10-14 13:35:00', 1, 2);
 CREATE TABLE produto
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -144,9 +144,9 @@ INSERT INTO produto_categoria (produto_id, categoria_id) VALUES (10, 6);
 INSERT INTO produto_categoria (produto_id, categoria_id) VALUES (11, 7);
 CREATE TABLE telefone
 (
-    cliente_id int(11) NOT NULL,
+    Proposta_id int(11) NOT NULL,
     telefones varchar(255)
 );
-CREATE INDEX FK8aafha0njkoyoe3kvrwsy3g8u ON telefone (cliente_id);
-INSERT INTO telefone (cliente_id, telefones) VALUES (1, '27363323');
-INSERT INTO telefone (cliente_id, telefones) VALUES (1, '93838393');
+CREATE INDEX FK8aafha0njkoyoe3kvrwsy3g8u ON telefone (Proposta_id);
+INSERT INTO telefone (Proposta_id, telefones) VALUES (1, '27363323');
+INSERT INTO telefone (Proposta_id, telefones) VALUES (1, '93838393');

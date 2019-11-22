@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hugo.creditrating.domain.Categoria;
-import com.hugo.creditrating.domain.Cliente;
+import com.hugo.creditrating.domain.Proposta;
 import com.hugo.creditrating.domain.Estado;
 import com.hugo.creditrating.domain.enums.EstadoCivil;
 import com.hugo.creditrating.domain.enums.TipoSexo;
 import com.hugo.creditrating.repositories.CategoriaRepository;
-import com.hugo.creditrating.repositories.ClienteRepository;
+import com.hugo.creditrating.repositories.PropostaRepository;
 import com.hugo.creditrating.repositories.EstadoRepository;
 
 @Service
@@ -20,7 +20,7 @@ public class DBService {
 
 	@Autowired private CategoriaRepository categoriaRepository;	
 	@Autowired private EstadoRepository estadoRepository;	
-	@Autowired private ClienteRepository clienteRepository;	
+	@Autowired private PropostaRepository PropostaRepository;	
 	
 	public DBService() {
 	}
@@ -42,9 +42,9 @@ public class DBService {
 		Estado est2 = new Estado("SP", "São Paulo");
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "641.798.245-98", 30, TipoSexo.FEMININO, EstadoCivil.SOLTEIRO, "SP", 0, 3700d);
-		Cliente cli2 = new Cliente(null, "Hugo Leonardo", "070.112.747-31",43, TipoSexo.MASCULINO, EstadoCivil.DIVORCIADO, "RJ", 1, 6900d);		
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2));		
+		Proposta cli1 = new Proposta(null, "Maria Silva", "641.798.245-98", 30, TipoSexo.FEMININO, EstadoCivil.SOLTEIRO, "SP", 0, 3700d);
+		Proposta cli2 = new Proposta(null, "Hugo Leonardo", "070.112.747-31",43, TipoSexo.MASCULINO, EstadoCivil.DIVORCIADO, "RJ", 1, 6900d);		
+		PropostaRepository.saveAll(Arrays.asList(cli1, cli2));		
 		
 	}
 

@@ -17,68 +17,68 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.hugo.creditrating.domain.Cliente;
-import com.hugo.creditrating.dto.ClienteDTO;
-import com.hugo.creditrating.dto.ClienteNewDTO;
-import com.hugo.creditrating.services.ClienteService;
+import com.hugo.creditrating.domain.Proposta;
+import com.hugo.creditrating.dto.PropostaDTO;
+import com.hugo.creditrating.dto.PropostaNewDTO;
+import com.hugo.creditrating.services.PropostaService;
 
 @RestController
-@RequestMapping(value="/clientes")
-public class ClienteResource {
+@RequestMapping(value="/propostas")
+public class PropostaResource {
 
 	@Autowired
-	private ClienteService clienteService;
+	private PropostaService PropostaService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
-		Cliente obj = clienteService.buscar(id);
+	public ResponseEntity<Proposta> find(@PathVariable Integer id) {
+		Proposta obj = PropostaService.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public ResponseEntity<List<Cliente>> get() {
-		List<Cliente> obj = clienteService.listar();
+	public ResponseEntity<List<Proposta>> get() {
+		List<Proposta> obj = PropostaService.listar();
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO) {
-		Cliente obj = clienteService.fromDTO(objDTO);
-		obj = clienteService.insert(obj);
+	public ResponseEntity<Void> insert(@Valid @RequestBody PropostaNewDTO objDTO) {
+		Proposta obj = PropostaService.fromDTO(objDTO);
+		obj = PropostaService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDTO, @PathVariable Integer id) {
-		Cliente obj = clienteService.fromDTO(objDTO);
+	public ResponseEntity<Void> update(@Valid @RequestBody PropostaDTO objDTO, @PathVariable Integer id) {
+		Proposta obj = PropostaService.fromDTO(objDTO);
 		obj.setId(id);
-		obj = clienteService.update(obj);
+		obj = PropostaService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		clienteService.delete(id);
+		PropostaService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<ClienteDTO>> findAll() {
-		List<Cliente> list = clienteService.listar();
-		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());  
+	public ResponseEntity<List<PropostaDTO>> findAll() {
+		List<Proposta> list = PropostaService.listar();
+		List<PropostaDTO> listDto = list.stream().map(obj -> new PropostaDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<ClienteDTO>> findPage(
+	public ResponseEntity<Page<PropostaDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page,
 			@RequestParam(value="size", defaultValue="24") Integer size,
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy,
 			@RequestParam(value="direction", defaultValue="ASC") String direction ) {
-		Page<Cliente> lista = clienteService.listPage(page, size, orderBy, direction);
-		Page<ClienteDTO> listaDTO = lista.map(obj -> new ClienteDTO(obj));
+		Page<Proposta> lista = PropostaService.listPage(page, size, orderBy, direction);
+		Page<PropostaDTO> listaDTO = lista.map(obj -> new PropostaDTO(obj));
 		return ResponseEntity.ok().body(listaDTO);
 	}
 

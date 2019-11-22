@@ -12,7 +12,7 @@ import com.hugo.creditrating.domain.enums.EstadoCivil;
 import com.hugo.creditrating.domain.enums.TipoSexo;
 
 @Entity
-public class Cliente implements Serializable {
+public class Proposta implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -28,10 +28,10 @@ public class Cliente implements Serializable {
 	private Integer qtdDependentes;
 	private Double vlRenda;
 	
-	public Cliente() {
+	public Proposta() {
 	}
 	
-	public Cliente(Integer id, String nome, String cpf, Integer idade, TipoSexo sexo, EstadoCivil estadoCivil, String estado,
+	public Proposta(Integer id, String nome, String cpf, Integer idade, TipoSexo sexo, EstadoCivil estadoCivil, String estado,
 			Integer qtdDependentes, Double vlRenda) {
 		super();
 		this.id = id;
@@ -138,7 +138,7 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Proposta other = (Proposta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

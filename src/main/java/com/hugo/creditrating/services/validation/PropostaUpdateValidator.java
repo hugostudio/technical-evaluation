@@ -11,32 +11,32 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.hugo.creditrating.domain.Cliente;
-import com.hugo.creditrating.dto.ClienteDTO;
-import com.hugo.creditrating.repositories.ClienteRepository;
+import com.hugo.creditrating.domain.Proposta;
+import com.hugo.creditrating.dto.PropostaDTO;
+import com.hugo.creditrating.repositories.PropostaRepository;
 import com.hugo.creditrating.resources.exception.FieldMessage;
 
-public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
+public class PropostaUpdateValidator implements ConstraintValidator<PropostaUpdate, PropostaDTO> {
 	
 	@Autowired
 	HttpServletRequest request;
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private PropostaRepository PropostaRepository;
 	
 	@Override
-	public void initialize(ClienteUpdate ann) {
+	public void initialize(PropostaUpdate ann) {
 	}
 
 	@Override
-	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
+	public boolean isValid(PropostaDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<>();
 			
 		@SuppressWarnings("unchecked")
 		Map <String, String> map = (Map <String, String>)request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 		Integer uriId = Integer.parseInt(map.get("id"));
 
-		Cliente cliAux = clienteRepository.findByCpf(objDto.getCpf());
+		Proposta cliAux = PropostaRepository.findByCpf(objDto.getCpf());
 		if(cliAux != null && !cliAux.getId().equals(uriId)) {
 			list.add(new FieldMessage("email", "Email já existente"));
 		}

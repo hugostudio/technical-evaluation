@@ -6,10 +6,10 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.hugo.creditrating.services.validation.ClienteInsert;
+import com.hugo.creditrating.services.validation.PropostaInsert;
 
-@ClienteInsert
-public class ClienteNewDTO implements Serializable {
+@PropostaInsert
+public class PropostaNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
@@ -25,7 +25,7 @@ public class ClienteNewDTO implements Serializable {
 	private Double vlRenda;
 	
 	
-	public ClienteNewDTO() {
+	public PropostaNewDTO() {
 	}
 
 	public String getNome() {

@@ -8,30 +8,30 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hugo.creditrating.domain.Cliente;
-import com.hugo.creditrating.dto.ClienteNewDTO;
-import com.hugo.creditrating.repositories.ClienteRepository;
+import com.hugo.creditrating.domain.Proposta;
+import com.hugo.creditrating.dto.PropostaNewDTO;
+import com.hugo.creditrating.repositories.PropostaRepository;
 import com.hugo.creditrating.resources.exception.FieldMessage;
 import com.hugo.creditrating.services.validation.utils.BR;
 
-public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+public class PropostaInsertValidator implements ConstraintValidator<PropostaInsert, PropostaNewDTO> {
 	
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private PropostaRepository PropostaRepository;
 	
 	@Override
-	public void initialize(ClienteInsert ann) {
+	public void initialize(PropostaInsert ann) {
 	}
 
 	@Override
-	public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
+	public boolean isValid(PropostaNewDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<>();
 		
 		if(!BR.isValidCpf(objDto.getCpf())) {
 			list.add(new FieldMessage("cpf", "CPF Inválido"));
 		}
 		
-		Cliente cliAux = clienteRepository.findByCpf(objDto.getCpf());
+		Proposta cliAux = PropostaRepository.findByCpf(objDto.getCpf());
 		if(cliAux != null) {
 			list.add(new FieldMessage("cpf", "CPF já existente"));
 		}

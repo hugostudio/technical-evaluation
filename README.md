@@ -2,9 +2,9 @@
 
 [![drawing](https://sitegabriela.conductor.com.br/App_Themes/8/Images/Logos/BannerSite.png)](http://www.calcard.com.br/)
 
-Desenvolver uma aplicação web que realize o cadastro de proposta de crédito para um determinado cliente, efetue a análise de dados e efetive a aprovação ou negação de um limite de crédito para o mesmo.
+Desenvolver uma aplicação web que realize o cadastro de proposta de crédito para um determinado Proposta, efetue a análise de dados e efetive a aprovação ou negação de um limite de crédito para o mesmo.
 
-A proposta de crédito consiste em um formulário contendo as seguintes informações de cadastro de cliente:
+A proposta de crédito consiste em um formulário contendo as seguintes informações de cadastro de Proposta:
 - Nome
 - CPF
 - idade
@@ -14,15 +14,15 @@ A proposta de crédito consiste em um formulário contendo as seguintes informa�
 - dependentes
 - renda
 
-Deve ser criado um algoritmo de análise de crédito, que vai avaliar as informações de entrada e definir se o cliente foi negado ou se foi aprovado. Além disso, o algoritmo deve informar em qual faixa de limite de crédito o cliente se encaixou.
+Deve ser criado um algoritmo de análise de crédito, que vai avaliar as informações de entrada e definir se o Proposta foi negado ou se foi aprovado. Além disso, o algoritmo deve informar em qual faixa de limite de crédito o Proposta se encaixou.
 
-  - O sistema deve realizar a análise do cliente baseado nas informações cadastrais da proposta.
+  - O sistema deve realizar a análise do Proposta baseado nas informações cadastrais da proposta.
   - O sistema deve gravar o cadastro da proposta no banco de dados.
   - O sistema deve efetuar a tomada de decisão da proposta, aprovando-a ou negando-a.   
   - Após o cadastro da proposta e tomada de decisão, o sistema deve apresentar o resultado da análise. 
   - Aprovação da proposta deve estar composta com valor de limite de crédito sugerido pelo sistema.
   - A Negação deve estar composta pelo motivo da não aprovação.
-  - O sistema deve permitir a consulta de aprovação/negação do cliente pelo cpf.
+  - O sistema deve permitir a consulta de aprovação/negação do Proposta pelo cpf.
   
 ### Sugestão de Tecnologias
 
